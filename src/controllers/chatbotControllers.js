@@ -1,3 +1,4 @@
+const { response } = require('express');
 const request = require('request');
 require("dotenv").config();
 const TOKEN = process.env.TOKEN;
@@ -76,6 +77,7 @@ let handleMessage = (sender_psid, received_message)=>{
   };
 
   let simsimiSend = (text) => {
+    let response = "du lieu trong";
     request(
       {
         uri:"https://api.simsimi.net/v1/?text="+text+"&lang=vi_VN",
@@ -83,12 +85,13 @@ let handleMessage = (sender_psid, received_message)=>{
       },
       (err, res, body) => {
         if (!err) {
-          return res.success+" -";
+          response = res.success;
         } else {
-          return "Sim đang bị ốm :( Cần anh Nhân fix lại ạ";
+          response = "Sim đang bị ốm :( Cần anh Nhân fix lại ạ";
         }
       }
-    )
+    );
+    return response;
   }
 
   let callSendAPI = (sender_psid, response) => {
