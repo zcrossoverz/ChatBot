@@ -1,6 +1,6 @@
 require("dotenv").config();
 import request from ("request");
-const PAGE_ACCESS_TOKEN = process.env.TOKEN;
+const TOKEN = process.env.TOKEN;
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 
 let getHomePage = (req, res) => {
