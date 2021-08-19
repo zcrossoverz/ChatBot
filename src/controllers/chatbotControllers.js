@@ -67,7 +67,7 @@ let handleMessage = (sender_psid, received_message)=>{
     if (received_message.text) {
       // Create the payload for a basic text message
       response = {
-        text: simsimiSend(received_message.text),
+        text: `${simsimiSend(received_message.text)}`,
       };
     }
 
@@ -78,12 +78,12 @@ let handleMessage = (sender_psid, received_message)=>{
   let simsimiSend = (text) => {
     request(
       {
-        uri:"https://api.simsimi.net/v1/?text=hi&lang=vi_VN",
-        method: "GET"
+        uri:"https://api.simsimi.net/v1/?text="+text+"&lang=vi_VN",
+        method: "GET",
       },
       (err, res, body) => {
         if (!err) {
-          return res.success;
+          return res.success+" -";
         } else {
           return "Sim đang bị ốm :( Cần anh Nhân fix lại ạ";
         }
