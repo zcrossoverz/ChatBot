@@ -84,11 +84,15 @@ let handleMessage = (sender_psid, received_message)=>{
         method: "GET",
       },
       (err, res, body) => {
-        if (!err) {
-          response = res.success;
-        } else {
-          response = "Sim đang bị ốm :( Cần anh Nhân fix lại ạ";
-        }
+        console.log('err: '+err);
+        console.log('res: '+res);
+        console.log('body: '+body);
+
+        // if (!err) {
+        //   response = res.success;
+        // } else {
+        //   response = "Sim đang bị ốm :( Cần anh Nhân fix lại ạ";
+        // }
       }
     );
     return response;
