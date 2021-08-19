@@ -88,11 +88,11 @@ let handleMessage = (sender_psid, received_message)=>{
         console.log('res: '+res);
         console.log('body: '+body);
 
-        // if (!err) {
-        //   response = res.success;
-        // } else {
-        //   response = "Sim đang bị ốm :( Cần anh Nhân fix lại ạ";
-        // }
+        if (!err) {
+          response = body.success;
+        } else {
+          response = "Sim đang bị ốm :( Cần anh Nhân fix lại ạ";
+        }
       }
     );
     return response;
