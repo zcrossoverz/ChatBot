@@ -1,5 +1,4 @@
-const { request } = require("http");
-
+const request = require('request');
 require("dotenv").config();
 const TOKEN = process.env.TOKEN;
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
