@@ -75,6 +75,22 @@ let handleMessage = (sender_psid, received_message)=>{
     callSendAPI(sender_psid, response);    
   };
 
+  let simsimiSend = (text) => {
+    request(
+      {
+        uri:"https://api.simsimi.net/v1/?text=hi&lang=vi_VN",
+        method: "GET",
+        json: request_body
+      },
+      (err, res, body) => {
+        if (!err) {
+          return res.success;
+        } else {
+          return "Sim đang bị ốm :( Cần anh Nhân fix lại ạ";
+        }
+      }
+    )
+  }
 
   let callSendAPI = (sender_psid, response) => {
     // Construct the message body
