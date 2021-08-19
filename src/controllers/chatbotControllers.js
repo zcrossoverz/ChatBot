@@ -67,8 +67,9 @@ let handleMessage = (sender_psid, received_message)=>{
     // Check if the message contains text
     if (received_message.text) {
       // Create the payload for a basic text message
+      let res = simsimiSend(received_message.text);
       response = {
-        text: `${simsimiSend(received_message.text)}`,
+        text: `${res}`,
       };
     }
 
