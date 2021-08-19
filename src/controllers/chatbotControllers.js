@@ -77,7 +77,6 @@ let handleMessage = (sender_psid, received_message)=>{
   };
 
   let simsimiSend = (text) => {
-    let response = "du lieu trong";
     request(
       {
         uri:"https://api.simsimi.net/v1/?text="+text+"&lang=vi_VN",
@@ -89,13 +88,12 @@ let handleMessage = (sender_psid, received_message)=>{
         console.log('body: '+body);
 
         if (!err) {
-          response = body.success;
+          return body.success;
         } else {
-          response = "Sim đang bị ốm :( Cần anh Nhân fix lại ạ";
+          return "Sim đang bị ốm :( Cần anh Nhân fix lại ạ";
         }
       }
     );
-    return response;
   }
 
   let callSendAPI = (sender_psid, response) => {
