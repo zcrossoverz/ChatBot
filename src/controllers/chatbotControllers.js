@@ -88,7 +88,7 @@ let handleMessage = (sender_psid, received_message)=>{
         console.log('body: '+body);
 
         if (!err) {
-          return body.success;
+          return JSON.parse(body).success;
         } else {
           return "Sim đang bị ốm :( Cần anh Nhân fix lại ạ";
         }
