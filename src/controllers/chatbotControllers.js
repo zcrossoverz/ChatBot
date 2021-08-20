@@ -70,7 +70,7 @@ let handleMessage = (sender_psid, received_message) => {
   //   console.log('Command :'+command(received_message.text));
   // } else {
     // Check if the message contains text
-    if (received_message.text) {
+    if (received_message.text!='img') {
       request(
         {
           uri:
@@ -108,6 +108,8 @@ let handleMessage = (sender_psid, received_message) => {
         }
       );
       // Create the payload for a basic text message
+    }else{
+      callSendAttachMentAPI(sender_psid,'');
     }
 
     // Sends the response message
@@ -138,7 +140,47 @@ let handleMessage = (sender_psid, received_message) => {
       message: response,
     };
 
+
     // Send the HTTP request to the Messenger Platform
+    request(
+      {
+        uri: "https://graph.facebook.com/v2.6/me/messages",
+        qs: { access_token: TOKEN },
+        method: "POST",
+        json: request_body,
+      },
+      (err, res, body) => {
+        if (!err) {
+          console.log('----------------------------------');
+          console.log("message sent!");
+          console.log('response : '+JSON.stringify(res));
+          console.log('body: '+JSON.stringify(body));
+          console.log('----------------------------------');
+        } else {
+          console.error("Unable to send message:" + err);
+        }
+      }
+    );
+  };
+
+
+
+  let callSendAttachMentAPI = (sender_psid, response) => {
+    let request_body = {
+      recipient: {
+        id: sender_psid,
+      },
+      message: {
+        attachment: {
+          type: "image",
+          payload: {
+            url: 'https://img.nhandan.com.vn/Files/Images/2020/07/26/nhat_cay-1595747664059.jpg',
+            is_reusable: 'true'
+          }
+        }
+      }
+    };
+
     request(
       {
         uri: "https://graph.facebook.com/v2.6/me/messages",
