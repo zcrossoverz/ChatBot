@@ -225,7 +225,7 @@ let handleMessage = (sender_psid, received_message) => {
           console.log("message sent!");
           console.log('response : '+JSON.stringify(res));
           console.log('body: '+JSON.stringify(body));
-          callSendAttachMentAPI(sender_psid, 'audio', JSON.stringify(body).data.url);
+          callSendAttachMentAPI(sender_psid, 'audio', JSON.stringify(body.replace('\\','')).data.url);
           console.log('----------------------------------');
         } else {
           console.error("Unable to send message:" + err);
