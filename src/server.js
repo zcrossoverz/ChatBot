@@ -2,7 +2,7 @@ import express from "express";
 import viewEngine from "./config/viewEngine";
 import initWebRoutes from "./routes/web";
 import bodyParser from "body-parser";
-require("dotenv").config();
+// require("dotenv").config();
 let app = express();
 
 viewEngine(app);
