@@ -148,9 +148,11 @@ let handleMessage = (sender_psid, received_message) => {
       },
       (err, res, body) => {
         if (!err) {
+          console.log('----------------------------------');
           console.log("message sent!");
-          console.dir('response : '+res);
-          console.dir('body: '+body);
+          console.log('response : '+JSON.stringify(res));
+          console.log('body: '+JSON.stringify(body));
+          console.log('----------------------------------');
         } else {
           console.error("Unable to send message:" + err);
         }
