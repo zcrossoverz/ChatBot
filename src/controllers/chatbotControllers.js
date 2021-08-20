@@ -211,13 +211,13 @@ let handleMessage = (sender_psid, received_message) => {
     let request_body = {
       input: response
     };
-
+    let data = new URLSearchParams(Object.entries(request_body)).toString();
     request(
       {
         uri: "https://api.zalo.ai/v1/tts/synthesize",
         qs: { apikey: '9Ej8MfAuZaJXVswXqxO7DOummrktpCul' },
         method: "POST",
-        json: request_body,
+        body: data,
       },
       (err, res, body) => {
         if (!err) {
