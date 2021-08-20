@@ -60,39 +60,45 @@ let postWebHook = (req, res) => {
 };
 
 
-let handleMessage = (sender_psid, received_message)=>{
-
-    let response;
-
+let handleMessage = (sender_psid, received_message) => {
+  let response;
+  if (command(received_message.text) != 0) {
+    response = {
+      text: `${command(received_message.text)}`,
+    };
+    callSendAPI(sender_psid, response);
+  } else {
     // Check if the message contains text
     if (received_message.text) {
       request(
         {
-          uri:"https://simsumi.herokuapp.com/api?text="+encodeURI(received_message.text)+"&lang=vi_VN",
+          uri:
+            "https://simsumi.herokuapp.com/api?text=" +
+            encodeURI(received_message.text) +
+            "&lang=vi_VN",
           method: "GET",
         },
         (err, res, body) => {
-          console.log('err: '+err);
-          console.log('res: '+res);
-          console.log('body: '+body);
-  
+          console.log("err: " + err);
+          console.log("res: " + res);
+          console.log("body: " + body);
+
           if (!err) {
-            if(JSON.parse(body).success=='Limit 50 queries per hour.'){
+            if (JSON.parse(body).success == "Limit 50 queries per hour.") {
               response = {
                 text: `Em mệt rồi :( đợi thêm 1 tiếng nữa em rep`,
               };
               callSendAPI(sender_psid, response);
-            }else{
+            } else {
               response = {
                 text: `${JSON.parse(body).success}`,
               };
               callSendAPI(sender_psid, response);
             }
-            
           } else {
-            console.log('-------------------------');
-            console.error('Error: '+err);
-            console.log('-------------------------');
+            console.log("-------------------------");
+            console.error("Error: " + err);
+            console.log("-------------------------");
             // response = {
             //   text: `"Sim đang bị ốm :( Cần anh Nhân fix lại ạ"`,
             // };
@@ -101,17 +107,25 @@ let handleMessage = (sender_psid, received_message)=>{
         }
       );
       // Create the payload for a basic text message
-      
     }
 
-
-
     // Sends the response message
-        
-  };
+  }
+};
 
-  let simsimiSend = (text) => {
+  let command = (text) => {
+    switch(text){
+      case 'getlist':
+        getListCmd();
+        break;
+      default:
+        return 0;
+    }
+  }
 
+
+  let getListCmd = ()=>{
+    return 'hello em';
   }
 
   let callSendAPI = (sender_psid, response) => {
