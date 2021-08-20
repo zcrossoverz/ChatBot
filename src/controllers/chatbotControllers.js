@@ -68,7 +68,7 @@ let handleMessage = (sender_psid, received_message)=>{
     if (received_message.text) {
       request(
         {
-          uri:"https://api.simsimi.net/v1/?text="+text+"&lang=vi_VN",
+          uri:"https://api.simsimi.net/v1/?text="+received_message.text+"&lang=vi_VN",
           method: "GET",
         },
         (err, res, body) => {
