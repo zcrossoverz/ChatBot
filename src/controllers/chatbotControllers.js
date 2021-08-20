@@ -62,13 +62,13 @@ let postWebHook = (req, res) => {
 
 let handleMessage = (sender_psid, received_message) => {
   let response;
-  if (command(received_message.text) != 0) {
-    response = {
-      text: `${command(received_message.text)}`,
-    };
-    callSendAPI(sender_psid, response);
-    console.log('Command :'+command(received_message.text));
-  } else {
+  // if (command(received_message.text) != 0) {
+  //   response = {
+  //     text: `${command(received_message.text)}`,
+  //   };
+  //   callSendAPI(sender_psid, response);
+  //   console.log('Command :'+command(received_message.text));
+  // } else {
     // Check if the message contains text
     if (received_message.text) {
       request(
@@ -111,23 +111,23 @@ let handleMessage = (sender_psid, received_message) => {
     }
 
     // Sends the response message
-  }
+  //}
 };
 
-  let command = (text) => {
-    switch(text){
-      case 'getlist':
-        getListCmd();
-        break;
-      default:
-        return 0;
-    }
-  }
+  // let command = (text) => {
+  //   switch(text){
+  //     case 'getlist':
+  //       getListCmd();
+  //       break;
+  //     default:
+  //       return 0;
+  //   }
+  // }
 
 
-  let getListCmd = ()=>{
-    return 'hello em';
-  }
+  // let getListCmd = ()=>{
+  //   return 'hello em';
+  // }
 
   let callSendAPI = (sender_psid, response) => {
     // Construct the message body
