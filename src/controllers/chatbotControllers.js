@@ -70,7 +70,7 @@ let handleMessage = (sender_psid, received_message) => {
   //   console.log('Command :'+command(received_message.text));
   // } else {
     // Check if the message contains text
-    let mode = 2;
+    let mode = 1;
     if(mode==1){
     if (received_message.text) {
       request(
@@ -210,7 +210,7 @@ let handleMessage = (sender_psid, received_message) => {
 
     let request_body = {
       input: response,
-      speaker_id: 3
+      speaker_id: 1
     };
     let data = new URLSearchParams(Object.entries(request_body)).toString();
     request(
