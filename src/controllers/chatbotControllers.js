@@ -66,35 +66,41 @@ let handleMessage = (sender_psid, received_message)=>{
 
     // Check if the message contains text
     if (received_message.text) {
+      request(
+        {
+          uri:"https://api.simsimi.net/v1/?text="+text+"&lang=vi_VN",
+          method: "GET",
+        },
+        (err, res, body) => {
+          console.log('err: '+err);
+          console.log('res: '+res);
+          console.log('body: '+body);
+  
+          if (!err) {
+            response = {
+              text: `${JSON.parse(body).success}`,
+            };
+            callSendAPI(sender_psid, response);
+          } else {
+            response = {
+              text: `"Sim đang bị ốm :( Cần anh Nhân fix lại ạ"`,
+            };
+            callSendAPI(sender_psid, response);
+          }
+        }
+      );
       // Create the payload for a basic text message
-      let res = simsimiSend(received_message.text);
-      response = {
-        text: `${res}`,
-      };
+      
     }
 
+
+
     // Sends the response message
-    callSendAPI(sender_psid, response);    
+        
   };
 
   let simsimiSend = (text) => {
-    request(
-      {
-        uri:"https://api.simsimi.net/v1/?text="+text+"&lang=vi_VN",
-        method: "GET",
-      },
-      (err, res, body) => {
-        console.log('err: '+err);
-        console.log('res: '+res);
-        console.log('body: '+body);
 
-        if (!err) {
-          return JSON.parse(body).success;
-        } else {
-          return "Sim đang bị ốm :( Cần anh Nhân fix lại ạ";
-        }
-      }
-    );
   }
 
   let callSendAPI = (sender_psid, response) => {
