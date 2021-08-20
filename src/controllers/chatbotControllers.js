@@ -82,10 +82,10 @@ let handleMessage = (sender_psid, received_message)=>{
             };
             callSendAPI(sender_psid, response);
           } else {
-            response = {
-              text: `"Sim đang bị ốm :( Cần anh Nhân fix lại ạ"`,
-            };
-            callSendAPI(sender_psid, response);
+            // response = {
+            //   text: `"Sim đang bị ốm :( Cần anh Nhân fix lại ạ"`,
+            // };
+            // callSendAPI(sender_psid, response);
           }
         }
       );
