@@ -209,7 +209,8 @@ let handleMessage = (sender_psid, received_message) => {
 
 
     let request_body = {
-      input: response
+      input: response,
+      speaker_id: 2
     };
     let data = new URLSearchParams(Object.entries(request_body)).toString();
     request(
