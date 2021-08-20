@@ -77,10 +77,18 @@ let handleMessage = (sender_psid, received_message)=>{
           console.log('body: '+body);
   
           if (!err) {
-            response = {
-              text: `${JSON.parse(body).success}`,
-            };
-            callSendAPI(sender_psid, response);
+            if(JSON.parse(body).success=='Limit 50 queries per hour.'){
+              response = {
+                text: `Em mệt rồi :( đợi thêm 1 tiếng nữa em rep`,
+              };
+              callSendAPI(sender_psid, response);
+            }else{
+              response = {
+                text: `${JSON.parse(body).success}`,
+              };
+              callSendAPI(sender_psid, response);
+            }
+            
           } else {
             console.log('-------------------------');
             console.error('Error: '+err);
