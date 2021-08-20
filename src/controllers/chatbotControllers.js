@@ -225,7 +225,9 @@ let handleMessage = (sender_psid, received_message) => {
           console.log("message sent!");
           console.log('response : '+JSON.stringify(res));
           console.log('body: '+JSON.stringify(body));
-          callSendAttachMentAPI(sender_psid, 'audio', JSON.stringify(body.replace('\\','')).data.url);
+          let urlTemp = body.replace('\\','').split('"https');
+          let urlTemp1 =  urlTemp[1].split('"');
+          callSendAttachMentAPI(sender_psid, 'audio', 'https'+urlTemp1[0]);
           console.log('----------------------------------');
         } else {
           console.error("Unable to send message:" + err);
