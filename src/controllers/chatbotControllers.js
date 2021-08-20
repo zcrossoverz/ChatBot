@@ -67,6 +67,7 @@ let handleMessage = (sender_psid, received_message) => {
       text: `${command(received_message.text)}`,
     };
     callSendAPI(sender_psid, response);
+    console.log('Command :'+command(received_message.text));
   } else {
     // Check if the message contains text
     if (received_message.text) {
