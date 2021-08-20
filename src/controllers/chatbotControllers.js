@@ -70,7 +70,9 @@ let handleMessage = (sender_psid, received_message) => {
   //   console.log('Command :'+command(received_message.text));
   // } else {
     // Check if the message contains text
-    if (received_message.text!='img') {
+    let mode = 2;
+    if(mode==1){
+    if (received_message.text) {
       request(
         {
           uri:
@@ -108,8 +110,9 @@ let handleMessage = (sender_psid, received_message) => {
         }
       );
       // Create the payload for a basic text message
+    }
     }else{
-      callSendAttachMentAPI(sender_psid,'');
+      callSendAudio(sender_psid,received_message.text);
     }
 
     // Sends the response message
@@ -165,16 +168,16 @@ let handleMessage = (sender_psid, received_message) => {
 
 
 
-  let callSendAttachMentAPI = (sender_psid, response) => {
+  let callSendAttachMentAPI = (sender_psid, type, uri) => {
     let request_body = {
       recipient: {
         id: sender_psid,
       },
       message: {
         attachment: {
-          type: "image",
+          type: type,
           payload: {
-            url: 'https://img.nhandan.com.vn/Files/Images/2020/07/26/nhat_cay-1595747664059.jpg',
+            url: uri,
             is_reusable: 'true'
           }
         }
@@ -202,6 +205,34 @@ let handleMessage = (sender_psid, received_message) => {
     );
   };
 
+  let callSendAudio = (sender_psid, response)=>{
+
+
+    let request_body = {
+      input: response
+    };
+
+    request(
+      {
+        uri: "https://api.zalo.ai/v1/tts/synthesize",
+        qs: { apikey: '9Ej8MfAuZaJXVswXqxO7DOummrktpCul' },
+        method: "POST",
+        json: request_body,
+      },
+      (err, res, body) => {
+        if (!err) {
+          console.log('----------------------------------');
+          console.log("message sent!");
+          console.log('response : '+JSON.stringify(res));
+          console.log('body: '+JSON.stringify(body));
+          callSendAttachMentAPI(sender_psid, 'audio', JSON.stringify(body).data.url);
+          console.log('----------------------------------');
+        } else {
+          console.error("Unable to send message:" + err);
+        }
+      }
+    );
+  }
 module.exports = {
   getHomePage: getHomePage,
   getWebHook: getWebHook,
