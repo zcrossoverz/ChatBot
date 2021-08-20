@@ -82,6 +82,9 @@ let handleMessage = (sender_psid, received_message)=>{
             };
             callSendAPI(sender_psid, response);
           } else {
+            console.log('-------------------------');
+            console.error('Error: '+err);
+            console.log('-------------------------');
             // response = {
             //   text: `"Sim đang bị ốm :( Cần anh Nhân fix lại ạ"`,
             // };
