@@ -1,8 +1,8 @@
 const { response } = require('express');
 const request = require('request');
-require("dotenv").config();
-const TOKEN = process.env.TOKEN;
-const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
+// require("dotenv").config();
+const TOKEN = 'EAADOCZCKMsy0BADI6ikL8OERfPoaNkWBfIgbTUYxv2l8Pv61K9ZAuVCi3ZBxULKCDmZC0IZByyZAhRsZBGjHPNT2SnZCjEsrWEAgR52B0VevtTEZAdxb3pjW9tbbRKbTtjcSX3g7TtGzcSTZAOT6v4VDRRY8z5J2t49k9B39QVXaWJ0HnVaNzuubuI'; //process.env.TOKEN;
+const VERIFY_TOKEN = 'nhandeptrai123'; //process.env.VERIFY_TOKEN;
 
 let getHomePage = (req, res) => {
   return res.send("Xin chao");
