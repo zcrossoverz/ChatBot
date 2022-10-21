@@ -94,7 +94,7 @@ let handleMessage = (sender_psid, received_message) => {
               callSendAPI(sender_psid, response);
             } else {
               response = {
-                text: `${JSON.parse(body).success}`,
+                text: `${JSON.parse(body).message}`,
               };
               callSendAPI(sender_psid, response);
             }
