@@ -76,9 +76,9 @@ let handleMessage = (sender_psid, received_message) => {
       request(
         {
           uri:
-            "https://simsumi.herokuapp.com/api?text=" +
+            "https://simsimi.info/api/?text=" +
             encodeURI(received_message.text) +
-            "&lang=vi_VN",
+            "&lc=vi",
           method: "GET",
         },
         (err, res, body) => {
